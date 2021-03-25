@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Entreprise</title>
+    <!-- l'appel de {$url_base} vous permet de recupérer le chemin de votre site web  -->
+    <link type="text/css" rel="stylesheet" href="{$url_base}public/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="{$url_base}public/css/samane.css"/>
+    <!-- integration de javascript dans le moteur de rendu de vue Smarty -->
+    {literal}
+    <script language=javascript>
+        function load_design() {
+            document.getElementById("design_js").style.color = "#40007d";
+        }
+
+    </script>
+    {/literal}
+</head>
+<body onload="load_design()">
+<div class="nav navbar navbar-default navbar-fixed-top">
+    <ul class="nav navbar-nav">
+        <li><a href="{$url_base}Demandeur/liste">Demandeur </a></li>
+        <li><a href="{$url_base}Entreprise/liste">Entreprise </a></li>
+        <li><a href="{$url_base}User/deconnexion">Se Deconnecter </a></li>
+        <!-- l'appel de {$url_base} vous permet de recupérer le chemin de votre site web  -->
+        <!--li><a href="{$url_base}">Accueil</a></li>
+        <li><a href="{$url_base}Test/index">Menu test page </a></li>
+        <li><a href="{$url_base}Test/getID/1">Menu test get id page </a></li>
+        <li><a href="{$url_base}Test/liste">Menu test list page </a></li>
+        <li><a href="{$url_base}Upload/index">upload file </a></li>
+        <li><a href="{$url_base}PdfGenerator/generate">Samane Generate pdf file </a></li>
+        <li><a href="{$url_base}ExcelGenerator/generate">Samane Generate excel file </a></li>
+        <li><a href="{$url_base}ExcelGenerator/read">Samane read excel file </a></li>
+        <li><a href="{$url_base}Email/sendMail">Samane Mailing </a></li-->
+    </ul>
+</div>
+
+    <div class="container" style="margin-top:80px;">
+        <div class="col-md-6 col-xs-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">Liste des Entreprises</div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Identifiant</th>
+                            <th>Nom</th>
+                            <th>Poste vacant</th>
+                        </tr>
+                        {foreach from=$listeEntreprise item=entreprise}
+                        <tr>
+                            <td>{$entreprise->getId()}</td>
+                            <td>{$entreprise->getNom()}</td>
+                            <td>{$entreprise->getPoste()}</td>
+                        </tr>
+                        {/foreach}
+                    </table>
+                </div>
+                </div>
+        </div>
+        <div class="col-md-6 col-xs-12 ">
+            <div class="panel panel-info">
+                <div class="panel-heading">Formulaire de gestion des entreprises</div>
+                <div class="panel-body">
+                    <form method="post" action="{$url_base}Entreprise/insert">
+                        <div class="form-group">
+                            <label>Nom</label>
+                            <input class="form-control" type="text" name="nom"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Poste vacant</label>
+                            <input class="form-control" type="text" name="poste"/>
+                        </div>
+                        <div class="form-group">
+                            <input class="btn-success" type="submit" name="valider" value="Ajouter offre"/>
+                            <input class="btn-danger" type="reset" name="annuler" value="Annuler"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

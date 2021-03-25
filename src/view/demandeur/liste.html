@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demandeur</title>
+    <!-- l'appel de {$url_base} vous permet de recupérer le chemin de votre site web  -->
+    <link type="text/css" rel="stylesheet" href="{$url_base}public/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="{$url_base}public/css/samane.css"/>
+    <!-- integration de javascript dans le moteur de rendu de vue Smarty -->
+    {literal}
+    <script language=javascript>
+        function load_design() {
+            document.getElementById("design_js").style.color = "#40007d";
+        }
+
+    </script>
+    {/literal}
+</head>
+<body onload="load_design()">
+<div class="nav navbar navbar-default navbar-fixed-top">
+    <ul class="nav navbar-nav">
+        <!--li><a href="{$url_base}">Accueil</a></li-->
+        <li><a href="{$url_base}Demandeur/liste">Demandeur </a></li>
+        <li><a href="{$url_base}Entreprise/liste">Entreprise </a></li>
+        <li><a href="{$url_base}User/deconnexion">Se Deconnecter </a></li>
+    </ul>
+</div>
+
+
+    <div class="col-md-12 col-xs-12" style="margin-top:80px;">
+        <div class="panel panel-info">
+            <div class="panel-heading">Liste des demandeurs</div>
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Identifiant</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Age</th>
+                        <th>Adresse</th>
+                        <th>Email</th>
+                        <th>Telephone</th>
+                        <th>Speciqlite</th>
+                        <th>Niveau D'Etude</th>
+                        <th>Experience Professionnelle</th>
+                        <th>Actions</th>
+                    </tr>
+                    {foreach from=$listeDemandeur item=demandeur}
+                        <tr>
+                            <td>{$demandeur->getId()}</td>
+                            <td>{$demandeur->getNom()}</td>
+                            <td>{$demandeur->getPrenom()}</td>
+                            <td>{$demandeur->getAge()}</td>
+                            <td>{$demandeur->getAdresse()}</td>
+                            <td>{$demandeur->getEmail()}</td>
+                            <td>{$demandeur->getTelephone()}</td>
+                            <td>{$demandeur->getSpecialite()}</td>
+                            <td>{$demandeur->getNiveau()}</td>
+                            <td>{$demandeur->getExperience()}</td>
+                            <td><a href="{$url_base}Demandeur/edit/{$demandeur->getId()}">Editer</a></td>
+                        </tr>
+                    {/foreach}
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<div class="col-md-8 col-xs-12 col-md-offset-2" style="margin-top:40px;">
+    <div class="panel panel-info">
+        <div class="panel-heading">AJOUT D'UN CV</div>
+        <div class="panel-body">
+            {if isset($ok)}
+            {if $ok != 0}
+            <div class="alert alert-success">Données ajoutées!</div>
+            {else}
+            <div class="alert alert-danger">Erreur!</div>
+            {/if}
+            {/if}
+            <form method="post" action="{$url_base}Demandeur/insert">
+                <div class="form-group">
+                    <label class="control-label">Nom</label>
+                    <input class="form-control" type="text" name="nom" id="nom"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Prenom</label>
+                    <input class="form-control" type="text" name="prenom" id="prenom"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Age</label>
+                    <input class="form-control" type="number" name="age" id="age"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Adresse</label>
+                    <input class="form-control" type="text" name="adresse" id="adresse"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Email</label>
+                    <input class="form-control" type="text" name="email" id="email"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Telephone</label>
+                    <input class="form-control" type="number" name="telephone" id="telephone"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Specialite</label>
+                    <input class="form-control" type="text" name="specialite" id="specialite"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Niveau D'Etude</label>
+                    <input class="form-control" type="text" name="niveau" id="niveau"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Experience Professionnelle</label>
+                    <input class="form-control" type="text" name="experience" id="experience"/>
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-success" type="submit" name="valider" value="ENvoyer"/>
+                    <input class="btn btn-danger" type="reset" name="annuler" value="Annuler"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+    <!-- l'appel de {$url_base} vous permet de recupérer le chemin de votre site web  -->
+    <link type="text/css" rel="stylesheet" href="{$url_base}public/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="{$url_base}public/css/samane.css"/>
+    <!-- integration de javascript dans le moteur de rendu de vue Smarty -->
+    {literal}
+    <script language=javascript>
+        function load_design() {
+            document.getElementById("design_js").style.color = "#40007d";
+        }
+
+    </script>
+    {/literal}
+</head>
+<body onload="load_design()">
+<div class="nav navbar navbar-default navbar-fixed-top">
+    <ul class="nav navbar-nav">
+        <li><a href="{$url_base}User/inscription">S'inscrire</a></li>
+        <!--li><a href="{$url_base}">Accueil</a></li>
+        <li><a href="{$url_base}Demandeur/liste">Demandeur </a></li>
+        <li><a href="{$url_base}Entreprise/liste">Entreprise </a></li>
+        <l'appel de {$url_base} vous permet de recupérer le chemin de votre site web >
+        <li><a href="{$url_base}">Accueil</a></li>
+        <li><a href="{$url_base}Test/index">Menu test page </a></li>
+        <li><a href="{$url_base}Test/getID/1">Menu test get id page </a></li>
+        <li><a href="{$url_base}Test/liste">Menu test list page </a></li>
+        <li><a href="{$url_base}Upload/index">upload file </a></li>
+        <li><a href="{$url_base}PdfGenerator/generate">Samane Generate pdf file </a></li>
+        <li><a href="{$url_base}ExcelGenerator/generate">Samane Generate excel file </a></li>
+        <li><a href="{$url_base}ExcelGenerator/read">Samane read excel file </a></li>
+        <li><a href="{$url_base}Email/sendMail">Samane Mailing </a></li-->
+    </ul>
+</div>
+<div class="col-md-4  col-md-offset-4" style="margin-top:150px;">
+    <div class="panel panel-info">
+        <div class="panel-heading">AUTHENTIFICATION</div>
+        <div class="panel-body">
+            {if isset($ok)}
+            {if $ok != 0}
+            <div class="alert alert-success">Données ajoutées!</div>
+            {else}
+            <div class="alert alert-danger">Erreur!</div>
+            {/if}
+            {/if}
+            <form method="post" action="{$url_base}Presentation/index">
+                <div class="form-group">
+                    <label class="control-label">LOGIN</label>
+                    <input class="form-control" type="text" name="login" id="login"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">MOT DE PASSE</label>
+                    <input class="form-control" type="password" name="password" id="password"/>
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" name="connect" value="SE CONNECTER"/>
+                    <!--input class="btn btn-danger" type="reset" name="annuler" value="Annuler"/-->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
